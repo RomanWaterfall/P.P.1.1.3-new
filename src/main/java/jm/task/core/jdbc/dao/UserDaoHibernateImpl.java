@@ -30,6 +30,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
 
         } catch (Exception e) {
+            e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -46,6 +47,7 @@ public class UserDaoHibernateImpl implements UserDao {
             ).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
+            e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -60,6 +62,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.save(new User(name, lastName, age));
             session.getTransaction().commit();
         } catch (Exception e) {
+            e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -76,6 +79,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
         } catch (Exception e) {
             if (transaction != null) {
+                e.printStackTrace();
                 transaction.rollback();
             }
         }
@@ -84,20 +88,13 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User> allUsers = null;
-        Transaction transaction = null;
         try (Session session = Util.getSession()) {
-            transaction = session.beginTransaction();
             allUsers = session.createQuery(
                     "FROM  User").getResultList();
-            session.getTransaction().commit();
-
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+            e.printStackTrace();
         }
         return allUsers;
-
     }
 
 
@@ -112,6 +109,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.getTransaction().commit();
 
         } catch (Exception e) {
+            e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
             }
