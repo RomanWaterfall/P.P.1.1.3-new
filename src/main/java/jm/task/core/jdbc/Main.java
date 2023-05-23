@@ -6,20 +6,19 @@ import jm.task.core.jdbc.service.UserServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
-      //  String USERNAME = "postgres";
-     //   String URL = "jdbc:postgresql://localhost:5432/postgres";
-        UserService table = new UserServiceImpl();
-        table.createUsersTable();
-        table.saveUser("Roman","Popov", (byte) 24);
-        table.saveUser("Katya","Mirova",(byte) 18);
-        table.saveUser("Misha","Anronov",(byte) 28);
-        table.saveUser("Den","Smernov",(byte) 46);
-      table.removeUserById(1);
-      for(User user : table.getAllUsers()){
-          System.out.println(user);
-      }
-      table.cleanUsersTable();
-      table.dropUsersTable();
+        UserService userService = new UserServiceImpl();
+        userService.createUsersTable();
+        userService.saveUser("Roman", "Popov", (byte) 24);
+        userService.saveUser("Katya", "Mirova", (byte) 18);
+        userService.saveUser("Misha", "Anronov", (byte) 28);
+        userService.saveUser("Den", "Smernov", (byte) 46);
+        userService.removeUserById(1);
+        for (User user : userService.getAllUsers()) {
+            System.out.println(user);
+        }
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
+
 
     }
 }
